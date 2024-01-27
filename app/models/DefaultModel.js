@@ -1,0 +1,1 @@
+exports.DefaultModel = 'EnlacesSoccer API';

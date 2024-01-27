@@ -1,0 +1,27 @@
+{
+  "name": "enlacessoccer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mssql": "^7.3.0",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "routes": "^2.1.0"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javier-aml/EnlaccesSoccer_API.git"
+  },
+  "author": "JAML",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javier-aml/EnlaccesSoccer_API/issues"
+  },
+  "homepage": "https://github.com/javier-aml/EnlaccesSoccer_API#readme"
+}
