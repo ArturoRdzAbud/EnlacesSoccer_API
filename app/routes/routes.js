@@ -15,6 +15,7 @@ const consultarDiasSemana = require('../controllers/ConsultarDiasSemana');
 const defaultRoute = require('../controllers/DefaultController');
 const guardarGrid = require('../controllers/GuardarGrid');
 const guardarEquipo = require('../controllers/GuardarEquipo');
+const ConsultarTiposDeSancion = require('../controllers/ConsultarTiposDeSancion');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -29,12 +30,13 @@ router.get('/ConsultarPaises', consultarPaises.get);
 router.get('/ConsultarTorneos', consultarTorneos.get);
 router.get('/ConsultarTiposDeTorneo', consultarTiposDeTorneo.get);
 router.get('/ConsultarDiasSemana', consultarDiasSemana.get);
+router.get('/ConsultarTiposDeSancion', ConsultarTiposDeSancion.get);
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
 router.post('/GuardarEquipo', guardarEquipo.post);
 
 router.post('/login', login.post);
-router.get('/validsession', passport.authenticate('jwt', {session: false}), validsession.get);
+router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
 
 module.exports = router;
