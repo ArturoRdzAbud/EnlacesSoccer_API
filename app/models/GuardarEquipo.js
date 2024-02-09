@@ -15,6 +15,8 @@ exports.GuardarEquipo = async (body) => {
       .execute('GuardarEquipo');
     return result.recordsets[0];
   } catch (err) {
+    console.log(err.message)
     return err;
+    
   }
 };
