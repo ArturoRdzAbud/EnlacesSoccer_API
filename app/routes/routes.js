@@ -16,7 +16,8 @@ const defaultRoute = require('../controllers/DefaultController');
 const guardarGrid = require('../controllers/GuardarGrid');
 const guardarEquipo = require('../controllers/GuardarEquipo');
 const ConsultarTiposDeSancion = require('../controllers/ConsultarTiposDeSancion');
-const ConsultarArbitros  = require('../controllers/ConsultarArbitros');
+const guardarTiposDeSancion = require('../controllers/GuardarTiposDeSancion');
+const ConsultarArbitros = require('../controllers/ConsultarArbitros');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -38,6 +39,7 @@ router.get('/ConsultarArbitros', ConsultarArbitros.get);
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
 router.post('/GuardarEquipo', guardarEquipo.post);
+router.post('/GuardarTiposDeSancion', guardarTiposDeSancion.get);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
