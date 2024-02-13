@@ -41,7 +41,7 @@ router.get('/ConsultarArbitros', ConsultarArbitros.get);
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
 router.post('/GuardarEquipo', guardarEquipo.post);
-router.post('/GuardarTiposDeSancion', guardarTiposDeSancion.get);
+router.post('/GuardarTiposDeSancion', guardarTiposDeSancion.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
