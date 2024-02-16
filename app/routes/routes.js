@@ -16,6 +16,7 @@ const consultarDiasSemana = require('../controllers/ConsultarDiasSemana');
 const defaultRoute = require('../controllers/DefaultController');
 const guardarGrid = require('../controllers/GuardarGrid');
 const guardarEquipo = require('../controllers/GuardarEquipo');
+const guardarArbitro = require('../controllers/GuardarArbitro');
 const ConsultarTiposDeSancion = require('../controllers/ConsultarTiposDeSancion');
 const ConsultarArbitros  = require('../controllers/ConsultarArbitros');
 
@@ -40,6 +41,7 @@ router.get('/ConsultarArbitros', ConsultarArbitros.get);
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
 router.post('/GuardarEquipo', guardarEquipo.post);
+router.post('/GuardarArbitro', guardarArbitro.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
