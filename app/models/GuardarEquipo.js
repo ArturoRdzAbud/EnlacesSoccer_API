@@ -5,6 +5,9 @@ exports.GuardarEquipo = async (body) => {
   try {
     console.log(body)
     const pool = await mssql.connect(sqlConfig);
+
+    // console.log(body.pnIdLiga)
+
     const result = await pool.request()
       .input('pnIdLiga', body.pnIdLiga)
       .input('pnIdTorneo', body.pnIdTorneo)
