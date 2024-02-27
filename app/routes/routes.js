@@ -20,6 +20,8 @@ const guardarArbitro = require('../controllers/GuardarArbitro');
 const ConsultarTiposDeSancion = require('../controllers/ConsultarTiposDeSancion');
 const guardarTiposDeSancion = require('../controllers/GuardarTiposDeSancion');
 const ConsultarArbitros = require('../controllers/ConsultarArbitros');
+const consultarProgramacionDePartidos = require('../controllers/ConsultarProgramacionDePartidos');
+const guardarProgramacionDePartidos = require('../controllers/GuardarProgramacionDePartidos');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -38,12 +40,14 @@ router.get('/ConsultarTiposDeTorneo', consultarTiposDeTorneo.get);
 router.get('/ConsultarDiasSemana', consultarDiasSemana.get);
 router.get('/ConsultarTiposDeSancion', ConsultarTiposDeSancion.get);
 router.get('/ConsultarArbitros', ConsultarArbitros.get);
+router.get('/ConsultarProgramacionDePartidos', consultarProgramacionDePartidos.get);
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
 router.post('/GuardarEquipo', guardarEquipo.post);
 router.post('/GuardarTiposDeSancion', guardarTiposDeSancion.post);
 router.post('/GuardarArbitro', guardarArbitro.post);
+router.post('/GuardarProgramacionDePartidos', guardarProgramacionDePartidos.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
