@@ -22,6 +22,7 @@ const guardarTiposDeSancion = require('../controllers/GuardarTiposDeSancion');
 const ConsultarArbitros = require('../controllers/ConsultarArbitros');
 const consultarProgramacionDePartidos = require('../controllers/ConsultarProgramacionDePartidos');
 const guardarProgramacionDePartidos = require('../controllers/GuardarProgramacionDePartidos');
+const consultarJugadores = require('../controllers/ConsultarJugadores');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -41,6 +42,7 @@ router.get('/ConsultarDiasSemana', consultarDiasSemana.get);
 router.get('/ConsultarTiposDeSancion', ConsultarTiposDeSancion.get);
 router.get('/ConsultarArbitros', ConsultarArbitros.get);
 router.get('/ConsultarProgramacionDePartidos', consultarProgramacionDePartidos.get);
+router.get('/ConsultarJugadores', consultarJugadores.get);
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
