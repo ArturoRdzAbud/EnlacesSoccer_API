@@ -11,6 +11,7 @@ const consultarLigas = require('../controllers/ConsultarLigas');
 const consultarMunicipios = require('../controllers/ConsultarMunicipios');
 const consultarPaises = require('../controllers/ConsultarPaises');
 const consultarTorneos = require('../controllers/ConsultarTorneos');
+const guardarTorneo = require('../controllers/GuardarTorneo');
 const consultarTiposDeTorneo = require('../controllers/ConsultarTiposDeTorneo');
 const consultarDiasSemana = require('../controllers/ConsultarDiasSemana');
 const defaultRoute = require('../controllers/DefaultController');
@@ -48,6 +49,7 @@ router.post('/GuardarEquipo', guardarEquipo.post);
 router.post('/GuardarTiposDeSancion', guardarTiposDeSancion.post);
 router.post('/GuardarArbitro', guardarArbitro.post);
 router.post('/GuardarProgramacionDePartidos', guardarProgramacionDePartidos.post);
+router.post('/GuardarTorneo', guardarTorneo.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
