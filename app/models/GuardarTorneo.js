@@ -15,6 +15,8 @@ exports.GuardarTorneo = async (body) => {
         .input('pnIdTipoTorneo', body.pnIdTipoTorneo)
         .input('psHorarioInicio', body.psHorarioInicio)
         .input('psHorarioFin', body.psHorarioFin)
+        .input('pnEsEditarEquipos', body.pnEsEditarEquipos)
+        .input('psXmlEquipos', body.psXmlEquipos)
 
       .input('psNombre', body.psNombre)
       .input('pnActivo', body.pnActivo)
