@@ -25,6 +25,7 @@ const consultarProgramacionDePartidos = require('../controllers/ConsultarProgram
 const guardarProgramacionDePartidos = require('../controllers/GuardarProgramacionDePartidos');
 const consultarJugadores = require('../controllers/ConsultarJugadores');
 const guardarJugador = require('../controllers/GuardarJugador');
+const generarCalendario = require('../controllers/GenerarCalendario');
 const GuardarJugadorxEquipo = require('../controllers/GuardarJugadorxEquipo');
 
 const login = require('../auth/controllers/login');
@@ -56,6 +57,7 @@ router.post('/GuardarArbitro', guardarArbitro.post);
 router.post('/GuardarProgramacionDePartidos', guardarProgramacionDePartidos.post);
 router.post('/GuardarTorneo', guardarTorneo.post);
 router.post('/GuardarJugador', guardarJugador.post);
+router.post('/GenerarCalendario', generarCalendario.post);
 router.post('/GuardarJugadorxEquipo', GuardarJugadorxEquipo.post);
 
 router.post('/login', login.post);
