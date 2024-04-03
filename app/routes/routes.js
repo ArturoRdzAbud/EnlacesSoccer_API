@@ -1,7 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const mssql = require('mssql');
+const sqlConfig = require('../config/db');
+const multer = require('multer');
 
+// Configuración de multer para manejar el almacenamiento de archivos
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const consultarEquipos = require('../controllers/ConsultarEquipos');
 const consultarEstados = require('../controllers/ConsultarEstados');
@@ -26,6 +32,7 @@ const guardarProgramacionDePartidos = require('../controllers/GuardarProgramacio
 const consultarJugadores = require('../controllers/ConsultarJugadores');
 const guardarJugador = require('../controllers/GuardarJugador');
 const generarCalendario = require('../controllers/GenerarCalendario');
+//const guardarJugadorFotografia = require('../controllers/GuardarJugadorFotografia');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -56,8 +63,38 @@ router.post('/GuardarProgramacionDePartidos', guardarProgramacionDePartidos.post
 router.post('/GuardarTorneo', guardarTorneo.post);
 router.post('/GuardarJugador', guardarJugador.post);
 router.post('/GenerarCalendario', generarCalendario.post);
+//router.post('/GuardarJugadorFotografia', guardarJugadorFotografia.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
+
+
+
+
+
+// Ruta para manejar la carga de imágenes
+router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res) => {
+    try {
+        //console.log(req.body)
+        const pool = await mssql.connect(sqlConfig);
+        const request = pool.request()
+        //console.log(req.body.pnIdLiga)
+        console.log('mensaje del server')
+        //console.log('Got file:', req.file.originalname);
+
+        // Guardar la imagen en la base de datos
+        const image = req.file.buffer;
+        await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1', [
+            image
+        ]);
+        res.status(200).send('Imagen subida correctamente');
+        return request.recordsets[0];
+
+    } catch (error) {
+        console.error('Error al subir la imagen:', error);
+        res.status(500).send('Error al subir la imagen');
+    }
+});
+
 
 module.exports = router;

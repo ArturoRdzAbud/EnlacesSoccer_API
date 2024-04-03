@@ -1,4 +1,9 @@
 const model = require('../models/GuardarJugador');
+//const multer = require('multer');
+
+// Configuración de multer para manejar el almacenamiento de archivos
+//const storage = multer.memoryStorage();
+//const upload = multer({ storage: storage });
 
 exports.post = async (req, res) => {
     const body = req.body.data;
