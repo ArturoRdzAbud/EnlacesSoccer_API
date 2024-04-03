@@ -32,10 +32,12 @@ const guardarProgramacionDePartidos = require('../controllers/GuardarProgramacio
 const consultarJugadores = require('../controllers/ConsultarJugadores');
 const guardarJugador = require('../controllers/GuardarJugador');
 const generarCalendario = require('../controllers/GenerarCalendario');
+const GuardarJugadorxEquipo = require('../controllers/GuardarJugadorxEquipo');
 //const guardarJugadorFotografia = require('../controllers/GuardarJugadorFotografia');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
+// const { GuardarJugadorxEquipo } = require('../models/GuardarJugadorxEquipo');
 
 
 
@@ -63,7 +65,6 @@ router.post('/GuardarProgramacionDePartidos', guardarProgramacionDePartidos.post
 router.post('/GuardarTorneo', guardarTorneo.post);
 router.post('/GuardarJugador', guardarJugador.post);
 router.post('/GenerarCalendario', generarCalendario.post);
-//router.post('/GuardarJugadorFotografia', guardarJugadorFotografia.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
