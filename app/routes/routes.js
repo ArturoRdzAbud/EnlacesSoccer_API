@@ -65,9 +65,33 @@ router.post('/GuardarProgramacionDePartidos', guardarProgramacionDePartidos.post
 router.post('/GuardarTorneo', guardarTorneo.post);
 router.post('/GuardarJugador', guardarJugador.post);
 router.post('/GenerarCalendario', generarCalendario.post);
+router.post('/GuardarJugadorxEquipo', GuardarJugadorxEquipo.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
+
+
+
+
+
+
+
+// try {
+//     const pool = await mssql.connect(sqlConfig);
+//     const request = pool.request();
+
+//     await request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
+//     await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1');
+
+//     res.status(200).send('Imagen subida correctamente');
+//     return request.recordsets[0];
+// } catch (error) {
+//     console.error('Error al subir la imagen:', error);
+//     res.status(500).send('Error al subir la imagen');
+// }
+
+
+
 
 
 
@@ -79,17 +103,31 @@ router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res)
         //console.log(req.body)
         const pool = await mssql.connect(sqlConfig);
         const request = pool.request()
-        //console.log(req.body.pnIdLiga)
+        console.log(req.body.pnIdLiga)
+        console.log(req.body.pnIdJugador)
         console.log('mensaje del server')
         //console.log('Got file:', req.file.originalname);
 
+        
         // Guardar la imagen en la base de datos
         const image = req.file.buffer;
-        await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1', [
-            image
-        ]);
+        const idLiga = req.body.pnIdLiga;
+        const idJugador = req.body.pnIdJugador;
+        
+
+        // await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1', [
+        //     image
+        // ]);
+
+        await request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
+        await request.input('idLiga', mssql.Int, idLiga)
+        await request.input('idJugador', mssql.Int, idJugador)
+        // console.log('etapa intermedia')
+        await request.query('UPDATE dbo.Jugador SET FechaUltimaMod=Getdate(), Fotografia = @image where IdJugador = @idJugador AND IdLiga = @idLiga');
+
         res.status(200).send('Imagen subida correctamente');
-        return request.recordsets[0];
+        // return request.recordsets[0];
+
 
     } catch (error) {
         console.error('Error al subir la imagen:', error);
