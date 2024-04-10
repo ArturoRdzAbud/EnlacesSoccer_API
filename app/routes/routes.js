@@ -93,13 +93,11 @@ router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res)
         const idJugador = req.body.pnIdJugador;
         
 
-        // await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1', [
-        //     image
-        // ]);
+     
 
-        await request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
-        await request.input('idLiga', mssql.Int, idLiga)
-        await request.input('idJugador', mssql.Int, idJugador)
+        request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
+        request.input('idLiga', mssql.Int, idLiga)
+        request.input('idJugador', mssql.Int, idJugador)
         // console.log('etapa intermedia')
         await request.query('UPDATE dbo.Jugador SET FechaUltimaMod=Getdate(), Fotografia = @image where IdJugador = @idJugador AND IdLiga = @idLiga');
 
