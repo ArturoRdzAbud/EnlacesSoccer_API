@@ -33,7 +33,9 @@ const consultarJugadores = require('../controllers/ConsultarJugadores');
 const guardarJugador = require('../controllers/GuardarJugador');
 const generarCalendario = require('../controllers/GenerarCalendario');
 const GuardarJugadorxEquipo = require('../controllers/GuardarJugadorxEquipo');
-//const guardarJugadorFotografia = require('../controllers/GuardarJugadorFotografia');
+const consultarCapturaDeResultados = require('../controllers/ConsultarCapturaDeResultados');
+const guardarCapturaDeResultados = require('../controllers/GuardarCapturaDeResultados');
+const consultarJugadoresEquipo = require('../controllers/ConsultarJugadoresEquipo');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -55,6 +57,8 @@ router.get('/ConsultarTiposDeSancion', ConsultarTiposDeSancion.get);
 router.get('/ConsultarArbitros', ConsultarArbitros.get);
 router.get('/ConsultarProgramacionDePartidos', consultarProgramacionDePartidos.get);
 router.get('/ConsultarJugadores', consultarJugadores.get);
+router.get('/ConsultarCapturaDeResultados', consultarCapturaDeResultados.get);
+router.get('/ConsultarJugadoresEquipo', consultarJugadoresEquipo.get);
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
@@ -66,34 +70,10 @@ router.post('/GuardarTorneo', guardarTorneo.post);
 router.post('/GuardarJugador', guardarJugador.post);
 router.post('/GenerarCalendario', generarCalendario.post);
 router.post('/GuardarJugadorxEquipo', GuardarJugadorxEquipo.post);
+router.post('/GuardarCapturaDeResultados', guardarCapturaDeResultados.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
-
-
-
-
-
-
-
-// try {
-//     const pool = await mssql.connect(sqlConfig);
-//     const request = pool.request();
-
-//     await request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
-//     await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1');
-
-//     res.status(200).send('Imagen subida correctamente');
-//     return request.recordsets[0];
-// } catch (error) {
-//     console.error('Error al subir la imagen:', error);
-//     res.status(500).send('Error al subir la imagen');
-// }
-
-
-
-
-
 
 
 
@@ -106,18 +86,14 @@ router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res)
         console.log(req.body.pnIdLiga)
         console.log(req.body.pnIdJugador)
         console.log('mensaje del server')
-        //console.log('Got file:', req.file.originalname);
-
-        
+                
         // Guardar la imagen en la base de datos
         const image = req.file.buffer;
         const idLiga = req.body.pnIdLiga;
         const idJugador = req.body.pnIdJugador;
         
 
-        // await request.query('UPDATE dbo.Jugador SET Fotografia = @image where IdJugador = 1 AND IdLiga = 1', [
-        //     image
-        // ]);
+     
 
         request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
         request.input('idLiga', mssql.Int, idLiga)
