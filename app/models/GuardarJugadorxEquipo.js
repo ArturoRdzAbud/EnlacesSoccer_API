@@ -21,6 +21,8 @@ exports.GuardarJugadorxEquipo = async (body) => {
     //   .input('psNombre', body.psNombre)
     //   .input('pnActivo', body.pnActivo)
       .input('pnAccion', body.pnAccion)
+      .input('pnIdLigaDestino', body.pnIdLigaDestino)
+      .input('pnIdTorneoDestino', body.pnIdTorneoDestino)
       .execute('GuardarJugadoresxEquipo');
     return result.recordsets[0];
   } catch (err) {
