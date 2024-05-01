@@ -37,6 +37,8 @@ const consultarCapturaDeResultados = require('../controllers/ConsultarCapturaDeR
 const guardarCapturaDeResultados = require('../controllers/GuardarCapturaDeResultados');
 const consultarJugadoresEquipo = require('../controllers/ConsultarJugadoresEquipo');
 
+const consultarJugadoresFoto = require('../controllers/ConsultarJugadoresFoto');
+
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
 // const { GuardarJugadorxEquipo } = require('../models/GuardarJugadorxEquipo');
@@ -59,6 +61,8 @@ router.get('/ConsultarProgramacionDePartidos', consultarProgramacionDePartidos.g
 router.get('/ConsultarJugadores', consultarJugadores.get);
 router.get('/ConsultarCapturaDeResultados', consultarCapturaDeResultados.get);
 router.get('/ConsultarJugadoresEquipo', consultarJugadoresEquipo.get);
+
+router.get('/ConsultarJugadoresFoto', consultarJugadoresFoto.get);
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
@@ -86,14 +90,14 @@ router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res)
         console.log(req.body.pnIdLiga)
         console.log(req.body.pnIdJugador)
         console.log('mensaje del server')
-                
+
         // Guardar la imagen en la base de datos
         const image = req.file.buffer;
         const idLiga = req.body.pnIdLiga;
         const idJugador = req.body.pnIdJugador;
-        
 
-     
+
+
 
         request.input('image', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
         request.input('idLiga', mssql.Int, idLiga)
