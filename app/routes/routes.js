@@ -36,6 +36,7 @@ const GuardarJugadorxEquipo = require('../controllers/GuardarJugadorxEquipo');
 const consultarCapturaDeResultados = require('../controllers/ConsultarCapturaDeResultados');
 const guardarCapturaDeResultados = require('../controllers/GuardarCapturaDeResultados');
 const consultarJugadoresEquipo = require('../controllers/ConsultarJugadoresEquipo');
+const consultarEstadisticaPorEquipo = require('../controllers/ConsultarEstadisticaPorEquipo');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -59,6 +60,8 @@ router.get('/ConsultarProgramacionDePartidos', consultarProgramacionDePartidos.g
 router.get('/ConsultarJugadores', consultarJugadores.get);
 router.get('/ConsultarCapturaDeResultados', consultarCapturaDeResultados.get);
 router.get('/ConsultarJugadoresEquipo', consultarJugadoresEquipo.get);
+router.get('/ConsultarEstadisticaPorEquipo', consultarEstadisticaPorEquipo.get);
+
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
