@@ -36,6 +36,7 @@ const GuardarJugadorxEquipo = require('../controllers/GuardarJugadorxEquipo');
 const consultarCapturaDeResultados = require('../controllers/ConsultarCapturaDeResultados');
 const guardarCapturaDeResultados = require('../controllers/GuardarCapturaDeResultados');
 const consultarJugadoresEquipo = require('../controllers/ConsultarJugadoresEquipo');
+const guardarLiga = require('../controllers/GuardarLiga');
 
 const consultarJugadoresFoto = require('../controllers/ConsultarJugadoresFoto');
 
@@ -75,6 +76,7 @@ router.post('/GuardarJugador', guardarJugador.post);
 router.post('/GenerarCalendario', generarCalendario.post);
 router.post('/GuardarJugadorxEquipo', GuardarJugadorxEquipo.post);
 router.post('/GuardarCapturaDeResultados', guardarCapturaDeResultados.post);
+router.post('/GuardarLiga', guardarLiga.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);

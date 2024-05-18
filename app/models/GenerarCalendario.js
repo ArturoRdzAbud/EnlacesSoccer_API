@@ -12,6 +12,7 @@ exports.GenerarCalendario = async (body) => {
     return result.recordsets[0];
   } catch (err) {
     console.log(err.message)
-    return err;
+    // return err;
+    throw new Error(err.message);
   }
 };
