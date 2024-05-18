@@ -36,6 +36,7 @@ const GuardarJugadorxEquipo = require('../controllers/GuardarJugadorxEquipo');
 const consultarCapturaDeResultados = require('../controllers/ConsultarCapturaDeResultados');
 const guardarCapturaDeResultados = require('../controllers/GuardarCapturaDeResultados');
 const consultarJugadoresEquipo = require('../controllers/ConsultarJugadoresEquipo');
+const consultarEstadisticaPorEquipo = require('../controllers/ConsultarEstadisticaPorEquipo');
 const guardarLiga = require('../controllers/GuardarLiga');
 
 const consultarJugadoresFoto = require('../controllers/ConsultarJugadoresFoto');
@@ -62,6 +63,8 @@ router.get('/ConsultarProgramacionDePartidos', consultarProgramacionDePartidos.g
 router.get('/ConsultarJugadores', consultarJugadores.get);
 router.get('/ConsultarCapturaDeResultados', consultarCapturaDeResultados.get);
 router.get('/ConsultarJugadoresEquipo', consultarJugadoresEquipo.get);
+router.get('/ConsultarEstadisticaPorEquipo', consultarEstadisticaPorEquipo.get);
+
 
 router.get('/ConsultarJugadoresFoto', consultarJugadoresFoto.get);
 
