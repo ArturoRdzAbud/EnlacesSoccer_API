@@ -21,11 +21,13 @@ exports.GuardarJugador = async (body) => {
       //.input('piFotografia', body.piFotografia)
       .input('pnAccion', body.pnAccion)
       .execute('GuardarJugadorNuevo');
+      console.log(result)
     return result.recordsets[0];
   } catch (err) {
     console.log(err.message)
-    throw new Error(err.message);
-    //return err;
+    // throw new Error(err.message);
+    return err.message
+    // return result.err
 
   }
 };
