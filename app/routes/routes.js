@@ -40,6 +40,7 @@ const consultarEstadisticaPorEquipo = require('../controllers/ConsultarEstadisti
 const guardarLiga = require('../controllers/GuardarLiga');
 
 const consultarJugadoresFoto = require('../controllers/ConsultarJugadoresFoto');
+const consultarArbitroFoto = require('../controllers/ConsultarArbitroFoto');
 
 const login = require('../auth/controllers/login');
 const validsession = require('../auth/controllers/validsession');
@@ -67,6 +68,7 @@ router.get('/ConsultarEstadisticaPorEquipo', consultarEstadisticaPorEquipo.get);
 
 
 router.get('/ConsultarJugadoresFoto', consultarJugadoresFoto.get);
+router.get('/ConsultarArbitroFoto', consultarArbitroFoto.get);
 
 router.get('/', defaultRoute.get);
 router.post('/GuardarGrid', guardarGrid.post);
@@ -86,7 +88,7 @@ router.get('/validsession', passport.authenticate('jwt', { session: false }), va
 
 
 
-// Ruta para manejar la carga de imágenes
+// Ruta para manejar la carga de fotografia del jugador
 router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res) => {
     try {
         //console.log(req.body)
@@ -119,6 +121,40 @@ router.post('/GuardarJugadorFotografia', upload.single('foto'), async (req, res)
         res.status(500).send('Error al subir la imagen');
     }
 });
+
+
+// Ruta para manejar la carga de fotografia del Árbitro
+router.post('/GuardarArbitroFotografia', upload.single('piFotografia'), async (req, res) => {
+    try {
+        //console.log(req.body)
+        const pool = await mssql.connect(sqlConfig);
+        const request = pool.request()
+        console.log(req.body.pnIdLiga)
+        console.log(req.body.pnIdArbitro)
+        console.log('mensaje del server')
+
+        // Guardar la imagen en la base de datos
+        const image = req.file.buffer;
+        const idLiga = req.body.pnIdLiga;
+        const idArbitro = req.body.pnIdArbitro;
+
+
+        request.input('pnImage', mssql.VarBinary, image); // Declara el parámetro @image y asigna el valor 'image'
+        request.input('pnIdLiga', mssql.Int, idLiga)
+        request.input('pnIdArbitro', mssql.Int, idArbitro)
+        // console.log('etapa intermedia')
+        await request.query('UPDATE dbo.Arbitro SET FechaUltimaMod=Getdate(), Fotografia = @pnImage where IdLiga = @pnIdLiga AND IdArbitro = @pnIdArbitro');
+
+        res.status(200).send('Imagen subida correctamente');
+        // return request.recordsets[0];
+
+
+    } catch (error) {
+        console.error('Error al subir la imagen:', error);
+        res.status(500).send('Error al subir la imagen');
+    }
+});
+
 
 
 module.exports = router;
