@@ -15,6 +15,8 @@ exports.GuardarJugador = async (body) => {
       .input('pdFechaNacimiento', body.pdFechaNacimiento)
       .input('pnIdGenero', body.pnIdGenero)
       .input('psCorreo', body.psCorreo)
+      .input('psLogin', body.psLogin)
+      .input('psPassword', body.psPassword)
       .input('pnActivo', body.pnActivo)
       //.input('piFotografia', body.piFotografia)
       .input('pnAccion', body.pnAccion)
@@ -22,7 +24,8 @@ exports.GuardarJugador = async (body) => {
     return result.recordsets[0];
   } catch (err) {
     console.log(err.message)
-    return err;
+    throw new Error(err.message);
+    //return err;
 
   }
 };
