@@ -10,6 +10,6 @@ exports.GuardarGrid = async (body) => {
       .execute('GuardarGrid');
     return result.recordsets[0];
   } catch (err) {
-    return err;
+    return err.message;
   }
 };

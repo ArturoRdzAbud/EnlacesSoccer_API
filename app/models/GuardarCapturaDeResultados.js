@@ -14,6 +14,6 @@ exports.GuardarCapturaDeResultados = async (body) => {
     //return result.recordsets[0];
   } catch (err) {
     console.log('entra al control de errores', err.message)
-    return err;
+    return err.message;
   }
 };

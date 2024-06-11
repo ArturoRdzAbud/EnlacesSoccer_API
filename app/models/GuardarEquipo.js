@@ -19,7 +19,7 @@ exports.GuardarEquipo = async (body) => {
     return result.recordsets[0];
   } catch (err) {
     console.log(err.message)
-    return err;
+    return err.message
     
   }
 };

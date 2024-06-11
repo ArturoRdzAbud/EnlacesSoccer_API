@@ -150,8 +150,10 @@ router.post('/GuardarArbitroFotografia', upload.single('piFotografia'), async (r
 
 
     } catch (error) {
-        console.error('Error al subir la imagen:', error);
+        //console.error('Error al subir la imagen:', error);
         res.status(500).send('Error al subir la imagen');
+        console.log(error.message)
+        //return err.message;
     }
 });
 

@@ -24,7 +24,7 @@ exports.GuardarArbitro = async (body) => {
     return result.recordsets[0];
   } catch (err) {
     console.log('MENSAJE DE ERROR:' + err.message)
-    return err;
+    return err.message;
     
   }
 };

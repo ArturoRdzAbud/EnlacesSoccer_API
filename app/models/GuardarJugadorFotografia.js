@@ -9,7 +9,7 @@ exports.GuardarJugadorFotografia = async (body) => {
 
   } catch (err) {
     console.log(err.message)
-    return err;
+    return err.message;
 
   }
 };
