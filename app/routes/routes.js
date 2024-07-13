@@ -40,6 +40,10 @@ const guardarCapturaDeResultados = require('../controllers/GuardarCapturaDeResul
 const consultarJugadoresEquipo = require('../controllers/ConsultarJugadoresEquipo');
 const consultarEstadisticaPorEquipo = require('../controllers/ConsultarEstadisticaPorEquipo');
 const guardarLiga = require('../controllers/GuardarLiga');
+const consultarUsuariosAdministradores = require('../controllers/ConsultarUsuariosAdministradores');
+const consultarConfiguracionAccesoLigas = require('../controllers/ConsultarConfiguracionAccesoLigas');
+const guardarConfiguracionAccesoLigas = require('../controllers/GuardarConfiguracionAccesoLigas');
+
 
 const consultarJugadoresFoto = require('../controllers/ConsultarJugadoresFoto');
 const consultarArbitroFoto = require('../controllers/ConsultarArbitroFoto');
@@ -68,6 +72,9 @@ router.get('/ConsultarUsuarios', consultarUsuarios.get);
 router.get('/ConsultarCapturaDeResultados', consultarCapturaDeResultados.get);
 router.get('/ConsultarJugadoresEquipo', consultarJugadoresEquipo.get);
 router.get('/ConsultarEstadisticaPorEquipo', consultarEstadisticaPorEquipo.get);
+router.get('/ConsultarUsuariosAdministradores', consultarUsuariosAdministradores.get);
+router.get('/ConsultarConfiguracionAccesoLigas', consultarConfiguracionAccesoLigas.get);
+
 
 
 router.get('/ConsultarJugadoresFoto', consultarJugadoresFoto.get);
@@ -86,6 +93,7 @@ router.post('/GenerarCalendario', generarCalendario.post);
 router.post('/GuardarJugadorxEquipo', GuardarJugadorxEquipo.post);
 router.post('/GuardarCapturaDeResultados', guardarCapturaDeResultados.post);
 router.post('/GuardarLiga', guardarLiga.post);
+router.post('/GuardarConfiguracionAccesoLigas', guardarConfiguracionAccesoLigas.post);
 
 router.post('/login', login.post);
 router.get('/validsession', passport.authenticate('jwt', { session: false }), validsession.get);
