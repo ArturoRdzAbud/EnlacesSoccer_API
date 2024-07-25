@@ -3,6 +3,8 @@ const sqlConfig = require('../config/db');
 
 exports.ConsultarGrid = async (params) => {
   try {
+    // console.log('params')
+    // console.log(params)
     const pool = await mssql.connect(sqlConfig);
     const result = await pool.request()
       .input('psSpSel', params.psSpSel)
